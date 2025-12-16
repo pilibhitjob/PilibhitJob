@@ -260,3 +260,51 @@ menuToggle.addEventListener('click', () => {
         icon.classList.add('fa-bars');
     }
 });
+
+// --- Dark Mode Implementation ---
+
+const body = document.body;
+const themeToggle = document.getElementById('theme-toggle');
+const toggleIcon = themeToggle.querySelector('i');
+const STORAGE_KEY = 'theme-preference';
+
+// Function to set the theme based on the class
+function setTheme(isDark) {
+    if (isDark) {
+        body.classList.add('dark-mode');
+        toggleIcon.classList.remove('fa-moon');
+        toggleIcon.classList.add('fa-sun');
+        localStorage.setItem(STORAGE_KEY, 'dark');
+    } else {
+        body.classList.remove('dark-mode');
+        toggleIcon.classList.remove('fa-sun');
+        toggleIcon.classList.add('fa-moon');
+        localStorage.setItem(STORAGE_KEY, 'light');
+    }
+}
+
+// 1. Check for saved preference or system preference on load
+function loadThemePreference() {
+    const savedPreference = localStorage.getItem(STORAGE_KEY);
+    
+    if (savedPreference) {
+        // Use saved preference
+        setTheme(savedPreference === 'dark');
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // Use system preference if no saved preference exists
+        setTheme(true);
+    } else {
+        // Default to light
+        setTheme(false);
+    }
+}
+
+// 2. Handle the manual toggle click
+themeToggle.addEventListener('click', () => {
+    // Check the current state and set the opposite
+    const isCurrentlyDark = body.classList.contains('dark-mode');
+    setTheme(!isCurrentlyDark);
+});
+
+// Run this function immediately after the DOM content is loaded
+document.addEventListener('DOMContentLoaded', loadThemePreference);

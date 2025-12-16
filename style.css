@@ -569,3 +569,93 @@ body {
 .privacy-section ul li {
     margin-bottom: 10px;
 }
+
+/* --- Dark Mode Variables (Set colors for the dark theme) --- */
+.dark-mode {
+    /* Main Backgrounds */
+    --dark-bg-color: #86868a; /* Deep space navy */
+    --dark-surface-color: #283331; /* Slightly lighter for cards/sections */
+    --dark-border-color: #555566;
+    
+    /* Text and Contrast */
+    --dark-text-color: #ffffff; /* Light text for readability */
+    --dark-placeholder-color: #999;
+    
+    /* Global Styles */
+    background-color: var(--dark-bg-color) !important;
+    color: var(--dark-text-color) !important;
+}
+
+/* --- Global Dark Mode Overrides (Applied when .dark-mode is active) --- */
+
+.dark-mode .gradient-header,
+.dark-mode .nav-menu {
+    /* Keep the gradient header/menu visually distinct */
+    /* background: linear-gradient(135deg, #000000 0%, #000000 100%) !important; */
+    color: white !important;
+}
+
+.dark-mode .controls {
+    background-color: var(--dark-surface-color) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .search-bar {
+    background-color: var(--dark-bg-color) !important;
+    border-color: var(--dark-border-color) !important;
+}
+
+.dark-mode .search-bar input {
+    background-color: transparent !important;
+    color: var(--dark-text-color) !important;
+}
+
+.dark-mode .search-bar input::placeholder {
+    color: var(--dark-placeholder-color) !important;
+}
+
+.dark-mode .job-card {
+    background-color: var(--dark-surface-color) !important;
+    border-color: #2de2c4 !important; /* Keep the accent border */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-mode .job-card h3 {
+    color: #ffc107 !important; /* Use an accent color for titles */
+}
+
+.dark-mode .job-card .company,
+.dark-mode .job-card .meta span {
+    color: var(--dark-text-color) !important;
+}
+
+.dark-mode footer,
+.dark-mode .privacy-section,
+.dark-mode .terms-section {
+    background-color: var(--dark-surface-color) !important;
+    color: var(--dark-text-color) !important;
+    border-top-color: var(--dark-border-color) !important;
+}
+
+.dark-mode .privacy-section h3,
+.dark-mode .terms-section h3 {
+    color: var(--dark-text-color) !important;
+    border-bottom-color: var(--dark-border-color) !important;
+}
+
+/* Optional: Dark mode button styling */
+#theme-toggle {
+    background-color: #4a00e0;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background-color: #8e2de2;
+}
