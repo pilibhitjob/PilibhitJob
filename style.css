@@ -1,0 +1,571 @@
+/* --- Global Styles and Reset --- */
+:root {
+    --primary-color: #4a00e0;
+    --secondary-color: #8e2de2;
+    --accent-color: #ff9900;
+    --bg-light: #f4f7fa;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* margin: 0;
+    padding: 0; */
+    background-color: #f4f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+/* Optional: Simple fade-in effect on load */
+body {
+    animation: fadeIn 1s ease-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* --- Logo Link Styling --- */
+.main-header .logo a {
+    color: inherit; /* Inherit the white color from the header */
+    text-decoration: none; /* Remove the underline */
+    transition: opacity 0.3s ease;
+}
+
+/* Optional: Add a subtle hover effect to the logo */
+.main-header .logo a:hover {
+    opacity: 0.8;
+}
+
+/* --- 1. Base Header & Layout --- */
+.main-header {
+    /* Gradient Background (Modern UI requirement) */
+    background: linear-gradient(90deg, #4a00e0 0%, #8e2de2 100%);
+    color: white;
+    padding: 15px 30px; /* Vertical padding, Horizontal padding */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    
+    /* Flexbox Layout for Header */
+    display: flex;
+    justify-content: space-between; /* Pushes logo and menu to opposite ends */
+    align-items: center;
+    position: sticky; /* Keep the header visible when scrolling */
+    top: 0;
+    z-index: 1000; /* Ensure it stays above other content */
+    transition: transform 0.3s ease; /* For potential sticky/scroll effects */
+}
+
+/* --- 2. Logo Styling --- */
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* --- 3. Navigation Menu Styling --- */
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Display links horizontally */
+    gap: 30px; /* Space between links */
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Navigation Hover Effect (Modern UI requirement) */
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: #ffc107; /* Accent color for hover line */
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease-out; /* Animation */
+}
+
+.nav-menu a:hover {
+    color: #ffc107; /* Change text color on hover */
+}
+
+.nav-menu a:hover::after {
+    width: 100%; /* Line animation */
+}
+
+/* --- 4. Menu Toggle Button (Initially Hidden on Desktop) --- */
+.menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    display: none; /* Hide on large screens */
+    transition: transform 0.3s ease;
+}
+.menu-toggle:active {
+    transform: scale(0.95);
+}
+
+
+/* --- 5. Mobile Responsiveness (The Breakpoint) --- */
+@media (max-width: 768px) {
+    
+    /* Show the toggle button and hide the full menu */
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        /* Position the menu off-screen to the right by default */
+        position: fixed;
+        top: 60px; /* Adjust based on header height */
+        right: 0;
+        width: 250px;
+        height: 100%;
+        background-color: #4a00e0; /* Match header color */
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        transform: translateX(100%); /* Initial off-screen position */
+        transition: transform 0.3s ease-out; /* Slide animation */
+    }
+
+    /* Style the vertical menu */
+    .nav-menu ul {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .nav-menu li {
+        margin: 10px 0;
+        text-align: left;
+    }
+    
+    .nav-menu a {
+        display: block; /* Make the whole area clickable */
+        padding: 10px 0;
+        font-size: 1.1em;
+    }
+    
+    .nav-menu a:hover::after {
+        width: 20%; /* Smaller line animation on mobile */
+    }
+    
+    /* Class applied by JavaScript to show the menu */
+    .nav-menu.active {
+        transform: translateX(0);
+    }
+}
+
+/* --- Header Styling (Gradient) --- */
+.gradient-header {
+    background: linear-gradient(135deg, #4a00e0, #8e2de2); /* Modern Purple Gradient */
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+.gradient-header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+.gradient-header p {
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+/* --- Controls Section (Search & Filters) --- */
+.controls {
+    /* Use a slight separation from the header */
+    padding: 40px 0 20px 0;
+    background-color: #fcfcfc; /* Very light background for contrast */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+/* --- Search Bar Styling --- */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 2px solid #ddd; /* Slightly bolder border */
+    border-radius: 40px; /* More rounded pill shape */
+    padding: 12px 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover/Focus Effect (Modern UI requirement) */
+.search-bar:focus-within {
+    border-color: #4a00e0; /* Accent color on focus */
+    box-shadow: 0 0 0 4px rgba(74, 0, 224, 0.1); /* Subtle glowing effect */
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    padding: 0 15px; /* Adjust padding inside the bar */
+    font-size: 1.1em;
+}
+
+.search-bar i {
+    color: #8e2de2;
+    font-size: 1.3em;
+}
+
+/* --- Filter Buttons Container --- */
+.filter-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+/* Filter Button Base Style */
+.filter-btn {
+    padding: 10px 22px;
+    border: 2px solid #8e2de2;
+    border-radius: 25px;
+    background-color: white;
+    color: #8e2de2;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+    text-transform: capitalize;
+    font-size: 0.95em;
+    user-select: none; /* Prevent text selection on click */
+}
+
+/* Filter Button Hover/Active Effects */
+.filter-btn:hover {
+    background-color: #f4f7fa; /* Light background on hover */
+    color: #4a00e0;
+    border-color: #4a00e0;
+}
+
+.filter-btn.active {
+    background-color: #4a00e0; /* Solid primary color when active */
+    color: white;
+    border-color: #4a00e0;
+    box-shadow: 0 4px 10px rgba(74, 0, 224, 0.3);
+    /* Subtle 3D press effect */
+    transform: translateY(-2px); 
+}
+
+/* --- Mobile Responsiveness Adjustments --- */
+@media (max-width: 600px) {
+    .search-bar {
+        margin: 0 10px 20px 10px; /* Ensure some side padding on smallest screens */
+        padding: 10px 20px;
+    }
+    .search-bar input {
+        font-size: 1em;
+    }
+    .filter-categories {
+        justify-content: flex-start; /* Align filters to the left on small screens */
+        padding: 0 10px;
+        /* Enable horizontal scrolling for too many filters */
+        overflow-x: auto; 
+        white-space: nowrap; /* Keep buttons on a single line */
+        -webkit-overflow-scrolling: touch;
+    }
+    .filter-btn {
+        flex-shrink: 0; /* Ensures buttons don't shrink */
+    }
+}
+
+/* Filter Buttons */
+.filter-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+.filter-btn {
+    padding: 10px 20px;
+    border: 1px solid #8e2de2;
+    border-radius: 20px;
+    background-color: white;
+    color: #8e2de2;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+}
+.filter-btn:hover {
+    background-color: #8e2de2;
+    color: white;
+    box-shadow: 0 4px 10px rgba(142, 45, 226, 0.3);
+}
+.filter-btn.active {
+    background-color: #4a00e0;
+    color: white;
+    border-color: #4a00e0;
+    transform: translateY(-2px);
+}
+
+/* --- Job Grid and Card Layout --- */
+.job-listings {
+    padding: 30px 0;
+}
+
+.job-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.job-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid #8e2de2; /* Accent Color */
+    position: relative;
+    overflow: hidden;
+}
+/* Hover Effect (Animation) */
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Content Styling */
+.job-card h3 {
+    margin-top: 0;
+    color: #4a00e0;
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+.job-card p {
+    margin: 5px 0;
+    font-size: 0.95em;
+}
+.job-card .company {
+    font-weight: 600;
+    color: #555;
+    display: block;
+    margin-bottom: 10px;
+}
+.job-card .meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #777;
+}
+.job-card .meta span i {
+    margin-right: 5px;
+    color: #8e2de2;
+}
+
+/* Apply Button */
+.apply-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    background: #4a00e0;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(74, 0, 224, 0.3);
+}
+.apply-btn:hover {
+    background: #8e2de2;
+    transform: translateY(-1px);
+}
+
+/* --- New Status Tag Styling --- */
+.job-card {
+    position: relative; /* Ensure the tag is positioned relative to the card */
+}
+
+.job-status-tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px 15px;
+    border-bottom-left-radius: 8px;
+    font-size: 0.75em;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+/* Green for Active */
+.status-active {
+    background-color: #28a745; /* Success Green */
+}
+
+/* Red for Expired/Filled */
+.status-closed {
+    background-color: #dc3545; /* Danger Red */
+}
+
+/* --- Disabled Apply Button Styling --- */
+.apply-btn.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    pointer-events: none; /* Prevents click events */
+    box-shadow: none;
+    transform: none;
+}
+
+/* --- 5. Footer Styling --- */
+.main-footer {
+    background: #2c3e50; /* Dark background */
+    color: #ecf0f1; /* Light text */
+    padding-top: 40px;
+    font-size: 0.9em;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    padding-bottom: 30px;
+}
+
+.footer-brand, .footer-links, .footer-contact {
+    flex: 1;
+    min-width: 250px; /* Minimum width for columns */
+    margin-bottom: 20px;
+}
+
+.footer-brand h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.footer-links h4, .footer-contact h4 {
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links ul li a {
+    color: #bdc3c7;
+    text-decoration: none;
+    line-height: 2.2;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: var(--accent-color);
+}
+
+.footer-contact p {
+    margin-bottom: 10px;
+    color: #bdc3c7;
+}
+
+.footer-contact i {
+    margin-right: 10px;
+    color: var(--secondary-color);
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: #ecf0f1;
+    font-size: 1.8em;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #34495e;
+    padding: 15px 0;
+    background: #233140; /* Slightly darker bottom */
+}
+
+/* --- Mobile Responsiveness for Footer --- */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-brand, .footer-links, .footer-contact {
+        min-width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .footer-links h4, .footer-contact h4 {
+        border-bottom: none;
+    }
+}
+
+/* --- Privacy Policy Section Styling --- */
+.privacy-section {
+    padding: 60px 0;
+    background-color: white;
+    border-top: 1px solid #eee;
+}
+
+.privacy-section h2 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #4a00e0;
+    margin-bottom: 5px;
+}
+
+.privacy-section .last-updated {
+    font-style: italic;
+    color: #777;
+    margin-bottom: 30px;
+    font-size: 0.9em;
+}
+
+.privacy-section h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 5px;
+}
+
+.privacy-section p, .privacy-section ul {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.privacy-section ul {
+    padding-left: 25px;
+}
+
+.privacy-section ul li {
+    margin-bottom: 10px;
+}
