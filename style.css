@@ -579,12 +579,3 @@ body {
     color: #ffcc00; /* Hover karne par color change karein (optional) */
     text-decoration: underline;
 }
-.footer-contact a[aria-label="YouTube"] {
-    color: #ffffff; /* Default color */
-    font-size: 20px;
-    transition: 0.3s;
-}
-
-.footer-contact a[aria-label="YouTube"]:hover {
-    color: #FF0000; /* Hover karne par YouTube Red color */
-}
