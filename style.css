@@ -279,7 +279,7 @@ body {
     }
     .filter-categories {
         justify-content: flex-start; /* Align filters to the left on small screens */
-        padding: 0 10px;
+        padding: 10 10px;
         /* Enable horizontal scrolling for too many filters */
         overflow-x: auto; 
         white-space: nowrap; /* Keep buttons on a single line */
@@ -457,7 +457,8 @@ body {
 .footer-links h4, .footer-contact h4 {
     border-bottom: 2px solid var(--secondary-color);
     padding-bottom: 5px;
-    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     color: white;
 }
 
@@ -468,7 +469,10 @@ body {
 .footer-links ul li a {
     color: #bdc3c7;
     text-decoration: none;
-    line-height: 2.2;
+    text-align: center;
+    margin-right: 30px;
+    padding-right: 8px;
+    /* line-height: 2.2; */
     transition: color 0.3s;
 }
 
@@ -517,7 +521,7 @@ body {
 
     .footer-brand, .footer-links, .footer-contact {
         min-width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
     }
 
     .footer-links h4, .footer-contact h4 {
