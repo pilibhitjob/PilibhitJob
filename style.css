@@ -440,7 +440,7 @@ body {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap; /* Allows wrapping on smaller screens */
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 }
 
 .footer-brand, .footer-links, .footer-contact {
